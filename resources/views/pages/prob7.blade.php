@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  @include('welcome')
+  @include('navbar')
 </head>
 
 <body>

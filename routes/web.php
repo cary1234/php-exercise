@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TodoListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//This is linked to TodoListController.php
+Route::get('/', [TodoListController::class, 'index']);
+//This is linked to TodoListController.php inserts data to list_items table
+Route::post('/sameItemRoute', [TodoListController::class, 'saveItem'])->name('saveItem');
+//This is linked to TodoListController.php updates the field is_complete of table
+Route::post('/markCompleteRoute/{id}', [TodoListController::class, 'markComplete'])->name('markComplete');
 
+//kodego activities
 Route::get('/prob1', function () {
-    return view('pages.prob1', [
-        'navbar',
-    ]);
+    return view('pages.prob1');
 });
 
 Route::get('/prob2', function () {
@@ -62,11 +64,3 @@ Route::get('/prob9', function () {
 Route::get('/prob10', function () {
     return view('pages.prob10');
 });
-
-
-
-
-
-Route::post('/saveItem', function () {
-    return view('welcome');
-})->name('saveItem');
